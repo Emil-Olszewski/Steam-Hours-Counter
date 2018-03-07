@@ -1,29 +1,39 @@
 #include "stdafx.h"
 #include "RaportCreator.h"
-#include <iostream>
-#include <cmath>
 
-RaportCreator::RaportCreator(std::vector<Player> *base)
+RaportCreator::RaportCreator(std::map<int, Player>* players, int dateCode)
 {
-	m_base = base;
+	m_dateCode = dateCode;
+	m_players = players;
 }
 
 void RaportCreator::Do()
 {
 	sort();
 	double average;
-	for (int i = 0; i < m_base->size(); i++)
+	for (int i = 0; i < m_playersIDs.size(); i++)
 	{
-		double average = round((m_base->operator[](i).HoursPast2Weeks() / 14) * 10) / 10;
-		std::cout << "**" << i+1 << " " << m_base->operator[](i).GetDiscordMention() << " z wynikiem " <<
-		m_base->operator[](i).HoursPast2Weeks() << "h [srednio " << average << "h dziennie]**" << std::endl;
+		auto p1 = m_players->operator[](m_playersIDs[i]);
+		auto p2 = m_players->operator[](m_playersIDs[i + 1]);
 
-		if (i + 1 < m_base->size())
+		average = round((p1.HoursPast2Weeks() / 14) * 10) / 10;
+		if (average == 0) continue;
+
+		std::cout << "**" << i + 1 << " " << p1.GetDiscordMention() << "**" << std::endl << std::endl;
+		std::cout << "wynik: " << p1.HoursPast2Weeks() << "h [srednio " << average << "h dziennie]" << std::endl;
+
+		double difference = p1.HoursPast2Weeks() - p1.previousHoursRecords[m_dateCode];
+		double percentage = round((difference / p1.HoursPast2Weeks() * 100) * 10) / 10;
+
+		std::cout << "od ostatniego pomiaru: " <<  showPlus(difference) << difference <<
+		"h  / " << showPlus(difference) << percentage << "%]" << std::endl << std::endl;
+
+		if (i + 1 < m_playersIDs.size())
 		{
-			double difference = m_base->operator[](i).HoursPast2Weeks() - m_base->operator[](i+1).HoursPast2Weeks();
-			double percentage = round((difference / m_base->operator[](i).HoursPast2Weeks() * 100) * 10) / 10;
+			difference = p1.HoursPast2Weeks() - p2.HoursPast2Weeks();
+			percentage = round((difference / p1.HoursPast2Weeks() * 100) * 10) / 10;
 
-			std::cout << std::endl << "[" << difference << "h do kolejnego miejsca / "<< percentage << "%]"
+			std::cout << std::endl << "---[" << difference << "h do kolejnego miejsca / "<< percentage << "%]---"
 			<< std::endl << std::endl;
 		}
 	}
@@ -31,20 +41,36 @@ void RaportCreator::Do()
 
 void RaportCreator::sort()
 {
+	fillPlayersIDs();
 	int swaps;
 	do
 	{
 		swaps = 0;
-		Player temp("a","b");
-		for (int i = 0; i < m_base->size()-1; i++)
+		int temp;
+		for (int i = 0; i < m_players->size()-1; i++)
 		{
-			if (m_base->operator[](i).HoursPast2Weeks() < m_base->operator[](i+1).HoursPast2Weeks())
+			if (m_players->operator[](m_playersIDs[i]).HoursPast2Weeks() <
+				m_players->operator[](m_playersIDs[i+1]).HoursPast2Weeks())
 			{
-				temp = m_base->operator[](i+1);
-				m_base->operator[](i + 1) = m_base->operator[](i);
-				m_base->operator[](i) = temp;
+				temp = m_playersIDs[i+1];
+				m_playersIDs[i+1] = m_playersIDs[i];
+				m_playersIDs[i] = temp;
 				swaps++;
 			}
 		}
 	} while (swaps != 0);
+}
+
+void RaportCreator::fillPlayersIDs()
+{
+	for (auto &it : *m_players)
+	{
+		m_playersIDs.push_back(it.first);
+	}
+}
+
+std::string RaportCreator::showPlus(double number)
+{
+	if (number >= 0) return "+";
+	else return "";
 }

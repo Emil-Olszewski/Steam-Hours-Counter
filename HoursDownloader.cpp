@@ -1,7 +1,37 @@
 #include "stdafx.h"
 #include "HoursDownloader.h"
-#include <iostream>
-double HoursDownloader::GetHoursPast2Weeks(std::string path)
+
+HoursDownloader::HoursDownloader(std::map<int, Player> *players)
+{
+	m_players = players;
+}
+
+void HoursDownloader::Do()
+{
+	getSystemDate();
+	saveDate();
+
+	std::fstream file;
+	file.open("records.txt", std::ios::app);
+	if (file.good())
+	{
+		int i = 1;
+		for(auto &element : *m_players)
+		{
+			element.second.HoursPast2Weeks() = getHoursPast2Weeks(element.second.GetSteamProfileLink());
+			file << std::endl << element.second.GetID() << " " << element.second.HoursPast2Weeks() <<
+				" " << systemDate.GetAsString();
+
+			system("cls");
+			std::cout << "[" << i << "/" << m_players->size() << "]" << std::endl;
+			i++;
+		}
+	}
+
+	file.close();
+}
+
+double HoursDownloader::getHoursPast2Weeks(std::string path)
 {
 	getSourceCode(path);
 	std::string searchingFor = "hours past";
@@ -35,4 +65,23 @@ void HoursDownloader::getSourceCode(std::string path)
 		res = curl_easy_perform(curl);
 		curl_easy_cleanup(curl);
 	}
+}
+
+void HoursDownloader::getSystemDate()
+{
+	SYSTEMTIME st;
+	GetLocalTime(&st);
+	systemDate.Set(st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute);
+}
+
+void HoursDownloader::saveDate()
+{
+	std::fstream file;
+	file.open("dates.txt", std::ios::app);
+	if (file.good())
+	{
+		file << std::endl << systemDate.GetAsString();
+	}
+
+	file.close();
 }

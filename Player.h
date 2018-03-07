@@ -1,19 +1,29 @@
 #pragma once
+
 #include <string>
+#include <vector>
+#include <map>
+
+#include "Date.h"
 
 class Player
 {
-private:
+	int m_id;
+	double m_hoursPast2Weeks;
 	std::string m_discordMention;
 	std::string m_steamProfileLink;
-	double m_hoursPast2Weeks;
-
+	
 public:
+	std::map<int, double> previousHoursRecords;
+
 	Player();
-	Player(std::string discord, std::string steam);
+	Player(int id, std::string discord, std::string steam);
+	int GetID();
 	double& HoursPast2Weeks();
 	std::string GetDiscordMention();
 	std::string GetSteamProfileLink();
 	void operator=(Player &p);
+	void operator+=(Player &p);
+	bool operator==(Player &p);
 };
 

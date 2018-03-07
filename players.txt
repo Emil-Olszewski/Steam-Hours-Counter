@@ -1,18 +1,16 @@
-17
-@emson#3639 http://steamcommunity.com/profiles/76561198346476641
-@Sliwa#0160 http://steamcommunity.com/id/13370701747
-@pzdr#0398 http://steamcommunity.com/profiles/76561198402362874
-@Kreativ#9781 http://steamcommunity.com/profiles/76561198368335451
-@kamil#1369 http://steamcommunity.com/id/enterdie
-@Jimi#8502 http://steamcommunity.com/profiles/76561198445687559
-@Bolek178#5440 http://steamcommunity.com/profiles/76561198791075213
-@Bartas#5454 http://steamcommunity.com/profiles/76561198087213334
-@Bartas#5454 http://steamcommunity.com/profiles/76561198084628154
-@FoxSound135#2420 http://steamcommunity.com/profiles/76561198215664517
-@Hasu#9513 http://steamcommunity.com/profiles/76561198065573034
-@julsonf3#5972 http://steamcommunity.com/profiles/76561198445747596
-@Robert737#5933 http://steamcommunity.com/profiles/76561198146716661
-@Turbodi0x#1137 http://steamcommunity.com/id/dioxinski
-@Wieclach#0182 http://steamcommunity.com/profiles/76561198287143531
-@K¿yrztow http://steamcommunity.com/id/rakcris
-Czarek http://steamcommunity.com/profiles/76561198126025807/
+1 @emson#3639 http://steamcommunity.com/profiles/76561198346476641
+2 @Sliwa#0160 http://steamcommunity.com/id/13370701747
+3 @pzdr#0398 http://steamcommunity.com/profiles/76561198402362874
+4 @Kreativ#9781 http://steamcommunity.com/profiles/76561198368335451
+5 @kamil#1369 http://steamcommunity.com/id/enterdie
+6 @Jimi#8502 http://steamcommunity.com/profiles/76561198445687559
+7 @Bolek178#5440 http://steamcommunity.com/profiles/76561198791075213
+8 @Bartas#5454 http://steamcommunity.com/profiles/76561198087213334
+9 @Bartas#5454 http://steamcommunity.com/profiles/76561198084628154
+10 @FoxSound135#2420 http://steamcommunity.com/profiles/76561198215664517
+11 @Hasu#9513 http://steamcommunity.com/profiles/76561198065573034
+12 @julsonf3#5972 http://steamcommunity.com/profiles/76561198445747596
+13 @Robert737#5933 http://steamcommunity.com/profiles/76561198146716661
+14 @Turbodi0x#1137 http://steamcommunity.com/id/dioxinski
+15 @Wieclach#0182 http://steamcommunity.com/profiles/76561198287143531
+16 @K¿yrztow http://steamcommunity.com/id/rakcris
