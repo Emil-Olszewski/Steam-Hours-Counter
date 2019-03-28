@@ -29,7 +29,7 @@ to next place: <hours to next place>h / <percentage>%
 ```
 
 ### What are **raports.txt** and **dates.txt** for?
-In **raports.txt** are infos about previous raports, and in **dates.txt** are dates of previous measurements. They are generated automatically and they don't disturbe program's work.
+In **raports.txt** are infos about previous raports, and in **dates.txt** are dates of previous measurements. They are generated automatically and they don't disturb program's work.
 
 
 
